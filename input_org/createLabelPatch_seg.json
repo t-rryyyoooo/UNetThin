@@ -1,6 +1,6 @@
 {
-    "label_directory" : "/Users/tanimotoryou/Documents/lab/imageData/Abdomen",
-    "save_directory" : "/Users/tanimotoryou/Desktop",
+    "label_directory" : "/mnt/data/Abdomen",
+    "save_directory" : "/sandisk/data/patch/Abdomen/with_pad/512-512-8-1/resampled/mask/image",
     "label_name" : "segmentation_resampled.nii.gz", 
     "mask_name" : "mask_resampled.mha", 
     "is_label" : true,
