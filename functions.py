@@ -4,6 +4,28 @@ import SimpleITK as sitk
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from decimal import Decimal, ROUND_HALF_UP
+import re
+
+def croppingForNumpy(image_array, lower_crop_size, upper_crop_size):
+    assert image_array.ndim == len(lower_crop_size) == len(upper_crop_size)
+    
+    slices = []
+    for lower, upper, size in zip(lower_crop_size, upper_crop_size, image_array.shape):
+        slices.append(slice(lower, size - upper))
+        
+    slices = tuple(slices)
+    
+    cropped_image_array = image_array[slices]
+    
+    return cropped_image_array
+
+def getSizeFromString(string, digit=3):
+    matchobj = re.match("([0-9]+)-" * (digit - 1) + "([0-9]+)", string)
+    if matchobj is None:
+        print("[ERROR] Invalid size : {}.".format(string))
+
+    size = np.array([int(s) for s in matchobj.groups()])
+    return size
 
 def rounding(number, digit):
     """
@@ -71,7 +93,8 @@ def clipping(image, lower_clip_index, upper_clip_index):
 
 def caluculatePaddingSize(image_size, image_patch, label_patch, slide):
     just = (image_size % label_patch) != 0
-    label_pad_size = just * (label_patch - (image_size % label_patch)) + (label_patch - slide)
+    is_slide = slide != 0
+    label_pad_size = just * (label_patch - (image_size % label_patch)) + is_slide * (label_patch - slide)
     image_pad_size = label_pad_size + (image_patch - label_patch)
 
     lower_pad_size_label = label_pad_size // 2
