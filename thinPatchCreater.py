@@ -93,7 +93,6 @@ class ThinPatchCreater():
 
             image_patch_array = sitk.GetArrayFromImage(image_patch_list[i])
             label_patch_array = sitk.GetArrayFromImage(label_patch_list[i])
-            
             self.image_patch_list.append(image_patch_list[i])
             self.label_patch_list.append(label_patch_list[i])
             self.image_patch_array_list.append(image_patch_array)

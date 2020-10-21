@@ -77,7 +77,8 @@ def main(args):
         segmented_array = segmented_array.to("cpu").detach().numpy().astype(np.float)
         segmented_array = np.squeeze(segmented_array)
         segmented_array = np.argmax(segmented_array, axis=0).astype(np.uint8)
-        segemented_array = croppingForNumpy(segmented_array, lower_crop_size, upper_crop_size)
+        segmented_array = croppingForNumpy(segmented_array, lower_crop_size[::-1], upper_crop_size[::-1])
+
 
         segmented_array_list.append(segmented_array)
 

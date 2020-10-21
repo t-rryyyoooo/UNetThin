@@ -46,13 +46,14 @@ def main(args):
 
     tpc.execute()
 
-#array_list = lpc.output("Array")
-#array_list = [ array for (i, array) in enumerate(array_list) if i%2 == 0]
-#res = lpc.restore(array_list)
-#print(res.GetDirection(), res.GetOrigin(), res.GetSpacing())
-#from functions import DICE
-#dice = DICE(sitk.GetArrayFromImage(image), sitk.GetArrayFromImage(res))
-#print(dice)
+    """
+    array_list = tpc.output("Array")
+    res = tpc.restore(array_list)
+    print(res.GetDirection(), res.GetOrigin(), res.GetSpacing())
+    from functions import DICE
+    dice = DICE(sitk.GetArrayFromImage(image), sitk.GetArrayFromImage(res))
+    print(dice)
+    """
 
     tpc.save(args.save_path)
 
