@@ -45,7 +45,7 @@
   "save_name" : "label.mha",
   "mask_name" : "No",
 
-  "csv_savepath" : "/sandisk/data/result/Abdomen/with_pad/512-512-8-1/resampled/mask/p07/DICE.csv", 
+  "csv_savedir" : "/sandisk/data/result/Abdomen/with_pad/512-512-8-1/resampled/mask/p07", 
   "class_label" : "backGound spleen  rightKidney  leftKidney gallbladder esophagus liver stomach aorta inferiorVenaCava portalVeinAndSplenicVein pancreas rightAdrenalGland leftAdrenalGland",
   "true_name" : "segmentation_resampled.nii.gz",
   "predict_name" : "label.mha" 
