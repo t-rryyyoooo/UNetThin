@@ -57,6 +57,7 @@ readonly PLANE_SIZE=$(cat ${JSON_FILE} | jq -r ".plane_size")
 readonly OVERLAP=$(cat ${JSON_FILE} | jq -r ".overlap")
 readonly IMAGE_NAME=$(cat ${JSON_FILE} | jq -r ".image_name")
 readonly SAVE_NAME=$(cat ${JSON_FILE} | jq -r ".save_name")
+readonly MASK_NAME=$(cat ${JSON_FILE} | jq -r ".mask_name")
 
 # Caluculation input
 readonly CSV_SAVEDIR=$(eval echo $(cat ${JSON_FILE} | jq -r ".csv_savedir"))
@@ -138,7 +139,16 @@ do
    echo "OVERLAP:${OVERLAP}"
    echo "GPU_IDS:${GPU_IDS}"
 
-   python3 segmentation.py $image $model $save --image_patch_width ${IMAGE_PATCH_WIDTH} --label_patch_width ${LABEL_PATCH_WIDTH} --plane_size ${PLANE_SIZE} --overlap ${OVERLAP} -g ${GPU_IDS}
+   if [ $MASK_NAME = "No" ];then
+    echo "Mask:${MASK_NAME}"
+    mask=""
+
+   else
+    mask_path="${DATA_DIRECTORY}/case_${number}/${MASK_NAME}"
+    mask="--mask_path ${mask_path}"
+   fi
+
+   python3 segmentation.py $image $model $save --image_patch_width ${IMAGE_PATCH_WIDTH} --label_patch_width ${LABEL_PATCH_WIDTH} --plane_size ${PLANE_SIZE} --overlap ${OVERLAP} -g ${GPU_IDS} ${mask}
 
    if [ $? -ne 0 ];then
     exit 1
