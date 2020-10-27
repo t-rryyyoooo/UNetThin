@@ -56,7 +56,7 @@ do
 
     fi
 
-    python3 createThinPatch.py ${image_path} ${label_path} ${save_path} --image_patch_width ${IMAGE_PATCH_WIDTH} --label_patch_width ${LABEL_PATCH_WIDTH} --plane_size ${PLANE_SIZE} --overlap ${OVERLAP}
+    python3 createThinPatch.py ${image_path} ${label_path} ${save_path} --image_patch_width ${IMAGE_PATCH_WIDTH} --label_patch_width ${LABEL_PATCH_WIDTH} --plane_size ${PLANE_SIZE} --overlap ${OVERLAP} ${mask}
 
 # Judge if it works.
     if [ $? -eq 0 ]; then
